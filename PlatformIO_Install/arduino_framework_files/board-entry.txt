@@ -1,0 +1,8 @@
+# Drogue CAN_BPWRD STM32G491CC
+GenG4.menu.pnum.DROGUE_CAN_BPWRD_G491CC=Drogue CAN_BPWRD STM32G491CC
+GenG4.menu.pnum.DROGUE_CAN_BPWRD_G491CC.upload.maximum_size=262144
+GenG4.menu.pnum.DROGUE_CAN_BPWRD_G491CC.upload.maximum_data_size=131072
+GenG4.menu.pnum.DROGUE_CAN_BPWRD_G491CC.build.board=DROGUE_CAN_BPWRD_G491CC
+GenG4.menu.pnum.DROGUE_CAN_BPWRD_G491CC.build.product_line=STM32G491xx
+GenF4.menu.pnum.DROGUE_CAN_BPWRD_G491CC.build.variant_h=variant_DROGUE_CAN_BPWRD_G491CC.h
+GenG4.menu.pnum.DROGUE_CAN_BPWRD_G491CC.build.variant=STM32G4xx/G491C(C-E)U_G4A1CEU
