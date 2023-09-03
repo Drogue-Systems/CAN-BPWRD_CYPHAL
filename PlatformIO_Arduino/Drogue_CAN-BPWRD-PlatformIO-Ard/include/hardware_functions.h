@@ -22,8 +22,8 @@ hardware_functions.cpp
 #define VOLTAGE_INPUT_MILLISECONDS_PER_SAMPLE 200 //take a sample every X milliseconds
 
 //define measured ratio of potential deividers on baord
-#define VOLTAGE_INPUT_MEASURED_RATIO_CAN_1 0.075
-#define VOLTAGE_INPUT_MEASURED_RATIO_CAN_2 0.075
+#define VOLTAGE_INPUT_MEASURED_RATIO_CAN_1 0.0746
+#define VOLTAGE_INPUT_MEASURED_RATIO_CAN_2 0.0746
 
 
 
