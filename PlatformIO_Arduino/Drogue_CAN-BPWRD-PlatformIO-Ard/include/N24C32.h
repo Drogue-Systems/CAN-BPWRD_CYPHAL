@@ -59,7 +59,7 @@ data can therefore replace data loaded earlier. Following the
 STOP, data loaded during the Page Write session will be
 written to memory in a single internal Write cycle (tWR).
 */
-int N24C32_page_write(byte address_1, byte address_2, byte data[32], int num_bytes);
+int N24C32_page_write(byte address_1, byte address_2, byte *data, int num_bytes);
 
 
 
