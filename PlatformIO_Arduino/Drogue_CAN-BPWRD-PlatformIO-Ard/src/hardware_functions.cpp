@@ -12,13 +12,25 @@ with the board and providing an easy interface for the main code.
 
 #include <Arduino.h>
 #include "hardware_functions.h"
+#include <Wire.h>
+#include "N24C32.h"
 
 
 void hardware_setup()
 {
+    //begin serial on USART2 for display
     Serial2.begin(921600);
 
+    // //configure I2C for memory interface
+    // Wire.setSCL(PA15);
+    // Wire.setSDA(PB7);
+    // Wire.begin();
 
+    N24C32_wire_config(PA15, PB7);
+
+    
+
+    //configure ADC pins for can bus voltage readings
     pinMode(PB14, INPUT);
     pinMode(PB15, INPUT);
 

@@ -18,14 +18,23 @@ void display_service()
     static uint32_t last_refresh = 0;
     static float floated_FPS = 0;
     static uint16_t frame_count = 0;
+
+
     if(millis() - last_refresh > (1000/SERIAL_DISPLAY_REFRESH_HZ))
     {
 
-        // Serial2.write(27);       // ESC command
-        // Serial2.print("[2J");    // clear screen command
-        // Serial2.write(27);
-        // Serial2.print("[H");     // cursor to home command
+        //wipe screen every now and then to remove any artifacts that arent overwritten
+        if (frame_count > (SERIAL_DISPLAY_REFRESH_HZ*7))
+        {
+            Serial2.write(27);       // ESC command
+            Serial2.print("[2J");    // clear screen command
+            frame_count = 0;
+        }
+
         Serial2.write("\x1B[H");
+
+
+        
 
         Serial2.println("  _____                                         _____            _           _ ");
         Serial2.println(" |  __ \\                                       / ____|          | |         | |");
@@ -56,11 +65,5 @@ void display_service()
         frame_count++;
     }
 
-    //wipe screen every now and then to remove any artifacts that arent overwritten
-    if (frame_count > (SERIAL_DISPLAY_REFRESH_HZ*7))
-    {
-        Serial2.write(27);       // ESC command
-        Serial2.print("[2J");    // clear screen command
-        frame_count = 0;
-    }
+
 }
