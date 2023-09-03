@@ -47,6 +47,9 @@ float return_voltage_input_can(int bus);
 
 
 
+
+
+
 //#########################################################
 //"private" functions
 //Don't call these
@@ -56,7 +59,7 @@ float return_voltage_input_can(int bus);
 //called by return_voltage_input_can_1() with option=1 to return average
 float calculate_return_average_voltage_can(int bus, int option);
 
-
+void eeprom_test(int mode);
 
 
 

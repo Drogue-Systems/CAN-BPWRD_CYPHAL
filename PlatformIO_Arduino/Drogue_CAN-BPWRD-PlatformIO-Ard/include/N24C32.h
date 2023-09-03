@@ -23,12 +23,13 @@ A I2C wrapper allowing use of the N24C32 EEPROM in arduino framework using the W
 //format is [1][0][1][0][A2][A1][A0][R/W]
 //[r/w] will be handled by the wire library, so we just need the 7 bit address
 
-//default A2, A1 and A0 to 0, giving an address of 0x50
-int N24C32_address = 0x50;
 
-void N24C32_wire_config(uint32_t scl, uint32_t sda);
-void N24C32_wire_config(uint32_t scl, uint32_t sda, int hex_address);
 
+void N24C32_wire_config(uint32_t scl, uint32_t sda, uint32_t freq_khz);
+void N24C32_wire_config(uint32_t scl, uint32_t sda, uint32_t freq_khz, int hex_address);
+
+byte N24C32_convert_U16_high_order(uint16_t u16_val);
+byte N24C32_convert_U16_low_order(uint16_t u16_val);
 
 /*
 Byte Write

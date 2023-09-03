@@ -10,6 +10,7 @@ Provides function interface for generating the serial display on USART2 (PA2)
 #include <Arduino.h>
 #include "serial_display.h"
 #include "hardware_functions.h"
+//#include "N24C32.h"
 
 
 
@@ -36,14 +37,14 @@ void display_service()
 
         
 
-        Serial2.println("  _____                                         _____            _           _ ");
+        Serial2.println("  _____                                         _____            _           _");
         Serial2.println(" |  __ \\                                       / ____|          | |         | |");
-        Serial2.println(" | |  | |_ __ ___  _   _  __ _  ___   ______  | |    _   _ _ __ | |__   __ _| |");
-        Serial2.println(" | |  | | '__/ _ \\| | | |/ _` |/ _ \\ |______| | |   | | | | '_ \\| '_ \\ / _` | |");
-        Serial2.println(" | |__| | | | (_) | |_| | (_| |  __/          | |___| |_| | |_) | | | | (_| | |");
-        Serial2.println(" |_____/|_|  \\___/ \\__,_|\\__, |\\___|           \\_____\\__, | .__/|_| |_|\\__,_|_|");
-        Serial2.println("                          __/ |                       __/ | |                  ");
-        Serial2.print("                         |___/                       |___/|_|      ");
+        Serial2.println(" | |  | |_ __ ___  __ _  _   _  ___   ______  | |    _   _ _ __ | |__   __ _| |");
+        Serial2.println(" | |  | | '__/ _ \\/ _` || | | |/ _ \\ |______| | |   | | | | '_ \\| '_ \\ / _` | |");
+        Serial2.println(" | |__| | | | (_)| (_| || |_| |  __/          | |___| |_| | |_) | | | | (_| | |");
+        Serial2.println(" |_____/|_|  \\___/\\__, | \\__,_|\\___|           \\_____\\__, | .__/|_| |_|\\__,_|_|");
+        Serial2.println("                   __/ |                              __/ | |");
+        Serial2.print("                  |___/                              |___/|_|      ");
         Serial2.print("FPS: ");
         Serial2.println(floated_FPS);
         Serial2.println("---------------------------------------------------------------------------------\n\n");
@@ -55,7 +56,7 @@ void display_service()
         Serial2.println("V");
 
 
-
+       // eeprom_test(2);
 
 
         uint32_t actual_frame_time = millis() - last_refresh;

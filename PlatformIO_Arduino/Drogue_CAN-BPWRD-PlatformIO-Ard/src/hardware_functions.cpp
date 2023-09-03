@@ -16,17 +16,15 @@ with the board and providing an easy interface for the main code.
 #include "N24C32.h"
 
 
+
 void hardware_setup()
 {
     //begin serial on USART2 for display
     Serial2.begin(921600);
 
-    // //configure I2C for memory interface
-    // Wire.setSCL(PA15);
-    // Wire.setSDA(PB7);
-    // Wire.begin();
-
-    N24C32_wire_config(PA15, PB7);
+ 
+    //Config wire library for N24C32 chip
+    //N24C32_wire_config(PA15, PB7, 100);
 
     
 
@@ -60,6 +58,13 @@ void hardware_service()
     //############################################################
 
 
+
+    static uint32_t last_eeprom_test = 0;
+    if ( (millis() - last_eeprom_test) > 100)
+    {
+        eeprom_test(1);
+        last_eeprom_test = millis();
+    }
 }
 
 
@@ -78,6 +83,67 @@ float return_voltage_input_can(int bus)
     }
 }
 
+
+void eeprom_test(int mode)
+{
+    static uint16_t read_pos = 0;
+    static uint16_t write_pos = 10;
+    static uint8_t write_val = 0;
+    static uint8_t read_data = 0;
+
+    static int RW_switch = 0;
+    if (mode == 1)
+    {
+        if (RW_switch == 0)
+        {
+            N24C32_byte_write(N24C32_convert_U16_high_order(write_pos), N24C32_convert_U16_low_order(write_pos), write_val);
+            write_pos++;
+            write_val++;
+
+            if (write_pos > 1000)
+            {
+                write_pos = 0;
+            }
+            if (write_val > UINT8_MAX)
+            {
+                write_val = 0;
+            }
+        }
+
+        if (RW_switch == 1)
+        {
+            //N24C32_selective_read(N24C32_convert_U16_high_order(read_pos), N24C32_convert_U16_low_order(read_pos), &read_data, 1);
+            N24C32_immediate_read(&read_data, 1);
+            read_pos++;
+            if (read_pos > 1000)
+            {
+                read_pos = 0;
+            }
+        }
+
+        if (RW_switch == 0)
+        {
+            RW_switch = 1;
+        }
+        else
+        {
+            RW_switch = 0;
+        }
+    }
+
+    else if (mode == 2)
+    {
+        Serial2.println("Write Pos   |   Write Val  |   Read pos   |   Read Val");
+        Serial2.print(write_pos);
+        Serial2.print("                 ");
+        Serial2.print(write_val);
+        Serial2.print("                 ");
+        Serial2.print(read_pos);
+        Serial2.print("                 ");
+        Serial2.println(read_data);
+    }
+  
+}
 
 float calculate_return_average_voltage_can(int bus, int option)
 {
